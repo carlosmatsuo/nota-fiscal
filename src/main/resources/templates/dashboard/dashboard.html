@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Recebíveis CERC</title>
+
+<link th:rel="stylesheet"
+	th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.css}" />
+<link th:rel="stylesheet"
+	th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css}" />
+<link th:rel="stylesheet"
+	th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+<link th:rel="stylesheet"
+	th:href="@{webjars/font-awesome/5.11.2/css/all.css} " />
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+
+<link rel="stylesheet" th:href="@{/css/main.css}">
+
+</head>
+
+<body>
+
+	<div class="container mt-5">
+
+		<div id="title">
+			<h1>Simulação Notas Fiscais</h1>
+		</div>
+
+		<!-- UM -->
+		<section class="my-5">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 mx-auto">
+						<p th:text="${message}" th:if="${message ne null}"
+							class="alert alert-primary"></p>
+
+						<form method="post" th:action="@{/erpEnviarNotaFiscal}"
+							enctype="multipart/form-data">
+							<div class="d-grid gap-2">
+								<button type="submit" class="btn  btn-primary">ERP - Web Hook - Enviar Nota Fiscal</button>
+							</div>
+						</form>
+
+						<br/>
+
+						<form method="post" th:action="@{/erpEnviarNotaFiscal}"
+							enctype="multipart/form-data">
+							<div class="d-grid gap-2">
+								<button type="submit" class="btn  btn-primary">ERP - Boleto - Enviar Boleto</button>
+							</div>
+						</form>
+
+						<span th:if="${msg != null}" th:text="${msg}"></span>
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+		 
+
+		<div class="row">
+			<table id="notas_erp" class="table table-striped">
+				<thead>
+					<tr>
+						<th width="20%">Código Nota</th>
+						<th width="30%">Emissor</th>
+						<th width="40%">Receptor</th>
+					</tr>
+				</thead>
+				<tbody id="eventoBody">
+					<tr class="result" data-th-each="nota : ${notas_erp}">
+						<td>[[${nota.codigo}]]</td>
+						<td>[[${nota.emissor}]]</td>
+						<td>[[${nota.receptor}]]</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		
+		<div class="row">
+			<table id="notas_recebidas" class="table table-striped">
+				<thead>
+					<tr>
+						<th width="20%">Código Nota Fiscal</th>
+						<th width="30%">Emissor</th>
+						<th width="40%">Receptor</th>
+					</tr>
+				</thead>
+				<tbody id="eventoBody2">
+					<tr class="result" data-th-each="nota : ${notas_recebidas}">
+						<td>[[${nota.codigo}]]</td>
+						<td>[[${nota.emissor}]]</td>
+						<td>[[${nota.receptor}]]</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+		<br /> <br /> <br />
+
+
+
+	</div>
+
+	<script data-th-src="@{/js/main.js}"></script>
+
+	<script language="javascript">
+		setTimeout(function() {
+			window.location.reload(4);
+		}, 5000);
+	</script>
+
+
+	<!-- Bootstrap Bundle with Popper -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
+		
+	</script>
+
+
+
+
+</body>
+
+</html>

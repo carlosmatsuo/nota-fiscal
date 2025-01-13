@@ -1,0 +1,9 @@
+docker-compose up -d
+
+
+docker build --tag=xyz/nota-fiscal:latest .
+
+docker push xyz/nota-fiscal:latest
+
+
+docker run -p 8080:8080 nota-fiscal
